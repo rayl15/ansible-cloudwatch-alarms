@@ -20,7 +20,7 @@
     state: present
     region: "{{ region }}"
     name: "{{ StatusCheckFailed_System }}"
-    metric: "StatusCheckFailed_Instances"
+    metric: "StatusCheckFailed_Instance"
     namespace: "AWS/EC2"
     statistic: Average
     comparison: ">="
