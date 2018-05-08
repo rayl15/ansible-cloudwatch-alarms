@@ -1,0 +1,7 @@
+---
+
+- name: Create CPU alarms
+  include: asg_cpu_alarm.yaml
+
+- name: Create system fail alarms
+  include: asg_status_check.yaml  

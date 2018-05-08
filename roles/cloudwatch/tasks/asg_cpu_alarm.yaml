@@ -1,0 +1,33 @@
+---
+- name: Creating Low CPU ASG Alarm
+  ec2_metric_alarm:
+    state: present
+    region: us-east-1
+    name: "{{ low_cpu_asg }}"
+    metric: "CPUUtilization"
+    namespace: "AWS/EC2"
+    statistic: Average
+    comparison: "<="
+    threshold: "30"
+    period: 300
+    evaluation_periods: 1
+    unit: "Percent"
+    description: "ASG CPU is Less than 30% for 5 minutes"
+    dimensions: {"AutoScalingGroupName": '{{ autoscaling_group }}'}
+    alarm_actions: ["{{sns_topic}}"]
+    
+- name: Creating high CPU ASG Alarm
+  ec2_metric_alarm:
+    metric: "CPUUtilization"
+    region: us-east-1
+    name: "{{ high_cpu_asg }}"
+    statistic: Average
+    comparison: ">="
+    threshold: "85"
+    period: 300
+    evaluation_periods: 1
+    unit: "Percent"
+    description: "CPU utilization is >= 85% for 5 minutes."
+    dimensions: {"AutoScalingGroupName": '{{ autoscaling_group }}'}
+    alarm_actions: ["{{sns_topic}}"]
+ 

@@ -1,0 +1,33 @@
+---
+- name: Creating StatusCheckFailed_System ASG Alarm
+  ec2_metric_alarm:
+    state: present
+    region: "{{ region }}"
+    name: "{{ StatusCheckFailed_System }}"
+    metric: "StatusCheckFailed_System"
+    namespace: "AWS/EC2"
+    statistic: Average
+    comparison: ">="
+    threshold: "1"
+    period: 300
+    evaluation_periods: 1
+    description: "ASG StatusCheckFailed_System"
+    dimensions: {"AutoScalingGroupName": '{{ autoscaling_group }}'}
+    alarm_actions: ["{{sns_topic}}"]
+    
+- name: Creating StatusCheckFailed_Instance ASG Alarm
+  ec2_metric_alarm:
+    state: present
+    region: "{{ region }}"
+    name: "{{ StatusCheckFailed_System }}"
+    metric: "StatusCheckFailed_Instances"
+    namespace: "AWS/EC2"
+    statistic: Average
+    comparison: ">="
+    threshold: "1"
+    period: 300
+    evaluation_periods: 1
+    description: "ASG StatusCheckFailed_Instance"
+    dimensions: {"AutoScalingGroupName": '{{ autoscaling_group }}'}
+    alarm_actions: ["{{sns_topic}}"]
+ 

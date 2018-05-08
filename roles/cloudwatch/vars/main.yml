@@ -1,0 +1,8 @@
+---
+autoscaling_group: kubota-prod-BastionStack-1F8UTQEN01E96-BastionAutoScalingGroup-RZ8DX52SZ0F5
+sns_topic: arn:aws:sns:us-east-1:325086054855:NotificationTopic
+low_cpu_asg: Autoscaling-low-cpu-alarm
+high_cpu_asg: Autoscaling-high-cpu-alarm
+StatusCheckFailed_System: ASG-NAME-StatusCheckFailed_System
+StatusCheckFailed_Instance: ASG-Name-StatusCheckFailed_Instance1
+region: us-east-1
